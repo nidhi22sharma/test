@@ -67,4 +67,5 @@ for entity_tuple in entities_only_in_file2:
     result_df = result_df.append({'entityid': entity_tuple[0], 'empid': entity_tuple[1], 'result_summary': 'Entity id or empid not available in File1'}, ignore_index=True)
 
 # Save the result to a new Excel file
+print("yes")
 result_df.to_excel("Comparison_Result.xlsx", index=False)
