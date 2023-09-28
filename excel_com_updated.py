@@ -10,7 +10,7 @@ import pandas as pd
 
 def read_and_prepare_file(file_path, col_mapping, date_columns):
     try:
-        df = pd.read_csv(file_path)
+        df = pd.read_excel(file_path, engine='openpyxl')
     except FileNotFoundError:
         raise FileNotFoundError(f"{file_path} not found")
     
@@ -38,8 +38,8 @@ col_mapping_file2 = {'amount': 'float', 'date1': 'date', 'date2': 'date', 'date3
 date_columns_file1 = ['date1', 'date2', 'date3', 'date4']
 date_columns_file2 = ['date1', 'date2', 'date3', 'date4']
 
-file1 = 'path_to_file1.csv'
-file2 = 'path_to_file2.csv'
+file1 = 'path_to_file1.xlsx'
+file2 = 'path_to_file2.xlsx'
 
 try:
     df1 = read_and_prepare_file(file1, col_mapping_file1, date_columns_file1)
@@ -58,15 +58,17 @@ unique_in_df2 = df2.index.difference(df1.index)
 common_df1 = df1.loc[common_keys].sort_index(axis=1)
 common_df2 = df2.loc[common_keys].sort_index(axis=1)
 
-comparison_result = common_df1.compare(common_df2, keep_shape=True, align_axis=0)
-
 comparison_results_df = pd.DataFrame(columns=['cpid', 'insid', 'comparison'])
 
-if not comparison_result.empty:
-    for idx, mismatches in comparison_result.iterrows():
+if not common_df1.equals(common_df2):
+    for idx in common_df1.index:
         cpid, insid = idx.split('_')
-        mismatched_cols = ', '.join(mismatches.columns.get_level_values(0).unique())
-        comparison_results_df = comparison_results_df.append({'cpid': cpid, 'insid': insid, 'comparison': f"{mismatched_cols}_mismatched"}, ignore_index=True)
+        row_df1, row_df2 = common_df1.loc[idx], common_df2.loc[idx]
+        
+        mismatched_cols = [col for col in common_df1.columns if row_df1[col] != row_df2[col]]
+        
+        if mismatched_cols:
+            comparison_results_df = comparison_results_df.append({'cpid': cpid, 'insid': insid, 'comparison': f"{', '.join(mismatched_cols)}_mismatched"}, ignore_index=True)
 
 for unique_key in unique_in_df1:
     cpid, insid = unique_key.split('_')
