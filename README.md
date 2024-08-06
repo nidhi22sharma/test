@@ -1,4 +1,24 @@
 
+Lead Time Reduction
+
+Definition:
+Lead Time Reduction focuses on decreasing the total time taken to complete a process or deliver a product from the initiation of a task to its completion. This metric is used to measure and improve the efficiency of the overall development and delivery process.
+
+Formula:
+Lead Time = Completion Date - Initiation Date
+
+Example:
+
+	•	Scenario: A team wants to reduce the lead time for their development process.
+	•	Initial Lead Time: 20 days
+	•	Improved Lead Time: 15 days
+	•	Lead Time Reduction: ((20 - 15) / 20) * 100 = 25% reduction
+
+
+
+
+
+
 The metric name "Manual vs. Automation Time Saving" is a descriptive and clear term for this purpose, but it is not a standard term used globally. To align with more standardized terminology, you might use "Test Automation Efficiency" or "Automation ROI (Return on Investment)" which are more commonly recognized metrics in the industry.
 
 Here’s the refined metric using a more globally recognized name:
