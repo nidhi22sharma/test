@@ -1,64 +1,40 @@
 
-Metric: Cost of Quality (CoQ)
+The metric name "Manual vs. Automation Time Saving" is a descriptive and clear term for this purpose, but it is not a standard term used globally. To align with more standardized terminology, you might use "Test Automation Efficiency" or "Automation ROI (Return on Investment)" which are more commonly recognized metrics in the industry.
 
-Definition:
-Cost of Quality (CoQ) measures the total costs incurred to ensure and maintain product quality, including prevention, appraisal, internal failure, and external failure costs. It also covers early testing activities in a shift-left approach.
+Here’s the refined metric using a more globally recognized name:
 
-Formula:
-CoQ = Prevention Costs + Appraisal Costs + Internal Failure Costs + External Failure Costs
+---
 
-	•	Prevention Costs: Costs to prevent defects (e.g., early requirements reviews, training).
-	•	Appraisal Costs: Costs to evaluate quality (e.g., inspections, testing).
-	•	Internal Failure Costs: Costs from defects found before delivery (e.g., rework).
-	•	External Failure Costs: Costs from defects found after delivery (e.g., warranty claims).
+### Metric: Test Automation Efficiency
 
-Example:
+**Definition:** 
+Test Automation Efficiency measures the time saved by using automated testing compared to manual testing. This metric quantifies the efficiency gains achieved through automation and helps in evaluating the effectiveness of automation efforts.
 
-	•	Scenario: Calculating CoQ for a project.
-	•	Prevention Costs: $20,000
-	•	Appraisal Costs: $25,000
-	•	Internal Failure Costs: $15,000
-	•	External Failure Costs: $10,000
-	•	CoQ Calculation: $20,000 + $25,000 + $15,000 + $10,000 = $70,000
+**Formula:** 
+Time Saving (%) = ((Manual Testing Time - Automation Testing Time) / Manual Testing Time) * 100
 
-Usage:
-
-	•	Efficiency: Helps identify cost-saving opportunities by emphasizing early defect prevention.
-	•	Quality Assurance: Ensures comprehensive quality management from requirements to delivery.
-
-This version is concise and includes the necessary details for understanding and calculating the Cost of Quality, including the shift-left approach.
-
-
-### Metric: Test Resource Adequacy
-
-**Definition:**
-Test Resource Adequacy measures whether the testing team has sufficient resources, including personnel, tools, and infrastructure, to effectively carry out testing activities. It ensures that the resources available are adequate to meet the testing objectives and deliver high-quality software.
-
-**Formula:**
-Test Resource Adequacy does not have a single formula but can be evaluated using various qualitative and quantitative assessments such as:
-- Resource Utilization Rate = (Total Hours Utilized by Testers / Total Available Hours) * 100
-- Tool Utilization Rate = (Time Spent Using Tools / Total Available Tool Time) * 100
-- Skill Coverage = (Number of Skills Covered by Team Members / Total Required Skills) * 100
+- **Manual Testing Time:** The total time taken to execute a set of test cases manually.
+- **Automation Testing Time:** The total time taken to execute the same set of test cases using automation.
 
 **Example:**
-- **Scenario:** A QA manager wants to assess the adequacy of resources for a testing project.
-  - **Personnel:** 
-    - Total Hours Available: 500 hours
-    - Total Hours Utilized: 450 hours
-    - **Resource Utilization Rate Calculation:**
-      - Resource Utilization Rate = (450 / 500) * 100 = 90%
-  - **Tools:** 
-    - Total Available Tool Time: 200 hours
-    - Time Spent Using Tools: 180 hours
-    - **Tool Utilization Rate Calculation:**
-      - Tool Utilization Rate = (180 / 200) * 100 = 90%
-  - **Skills:**
-    - Number of Required Skills: 10
-    - Number of Skills Covered by Team Members: 9
-    - **Skill Coverage Calculation:**
-      - Skill Coverage = (9 / 10) * 100 = 90%
+- **Scenario:** A company wants to compare the time required to execute 100 test cases manually and using automation.
+  - Manual Testing Time: 50 hours
+  - Automation Testing Time: 10 hours
+  - **Time Saving Calculation:** 
+    - Time Saving (%) = ((50 - 10) / 50) * 100
+    - Time Saving (%) = (40 / 50) * 100 = 80%
+    - This indicates an 80% time saving by using automation instead of manual testing.
 
 **Usage:**
+- **Efficiency Gains:** Demonstrates the efficiency improvements achieved through test automation.
+- **Resource Allocation:** Helps in planning and allocating resources effectively by highlighting the time saved with automation.
+- **Cost Savings:** Time saved can be translated into cost savings, making a strong case for investing in automation tools and technologies.
+
+---
+
+This metric name, "Test Automation Efficiency," aligns better with globally recognized terms and provides the same valuable insights into the benefits of test automation.
+
+
 - **Planning:** Ensures that there are enough resources (personnel, tools, infrastructure) to meet the testing demands.
 - **Efficiency:** Helps in identifying gaps in resource allocation and optimizing the use of available resources.
 - **Capability Building:** Highlights areas where additional training or resources are needed to enhance the testing team's capabilities.
