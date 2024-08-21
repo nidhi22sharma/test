@@ -68,3 +68,45 @@ for entityid, empid in entities_only_in_file2:
 
 # Save the result to a new Excel file
 result_df.to_excel("Comparison_Result.xlsx", index=False)
+
+
+cc
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "Python.h"  // Include the Python API header
+
+Action()
+{
+    lr_output_message("I am going to execute python script using Python C API");
+
+    // Initialize the Python interpreter
+    Py_Initialize();
+
+    // Define the Python code as a string
+    const char *pythonScript =
+        "def main():\n"
+        "    with open('D:\\\\testing_app_dev\\\\selenium_suite\\\\apptio\\\\LRE_log', 'a') as LRE_log:\n"
+        "        print('Hello I have executed Python script!', file=LRE_log)\n"
+        "\n"
+        "if __name__ == '__main__':\n"
+        "    main()\n";
+
+    // Execute the Python script
+    int result = PyRun_SimpleString(pythonScript);
+    if (result == 0)
+    {
+        lr_output_message("Python script executed successfully using Python C API");
+    }
+    else
+    {
+        lr_error_message("Failed to execute python script using Python C API");
+    }
+
+    // Finalize the Python interpreter
+    Py_Finalize();
+
+    return 0;
+}
+
