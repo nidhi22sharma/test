@@ -119,31 +119,28 @@ var retryCount = 0;  // Counter for retries
 for (retryCount = 0; retryCount < maxRetries; retryCount++) {
 
     // Navigate to the page
-    truclient_step("Navigate to URL", function() {
-        window.location.href = "https://yoururl.com";  // Replace with your actual URL
-    });
+    window.location.href = "https://yoururl.com";  // Replace with your actual URL
 
-    // Optionally, add a wait to allow the page to load before checking
-    truclient_step("Wait for Page Load", function() {
-        return Wait(5);  // Wait for 5 seconds, adjust as needed
-    });
+    // Wait for the page to load
+    Wait(5);  // Wait for 5 seconds, adjust as needed
 
     // Check if the text is visible
     isTextVisible = evalXPath("//span[text()='YourTextHere']").exists();  // Replace with actual XPath for the text
 
     if (isTextVisible) {
-        lr_output_message("Text is visible. Proceeding with the script.");
+        lr.output_message("Text is visible. Proceeding with the script.");
         break;  // Exit the loop if the text is visible
     } else {
-        lr_output_message("Text not visible. Attempting to navigate again.");
+        lr.output_message("Text not visible. Attempting to navigate again.");
     }
 }
 
 // After the loop, check if the text was found
 if (!isTextVisible) {
-    lr_error_message("Text was not found after " + maxRetries + " attempts.");
+    lr.error_message("Text was not found after " + maxRetries + " attempts.");
     // Handle this scenario (e.g., fail the script or take another action)
 }
 
 // Continue with the rest of your script
+
 
