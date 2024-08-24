@@ -111,36 +111,31 @@ Action()
 }
 
 
-var isTextVisible = false;  // Boolean to track if the text is visible
-var maxRetries = 5;  // Maximum number of retries to avoid infinite loops
-var retryCount = 0;  // Counter for retries
+var retryCount = 0;
+var maxRetries = 5;
 
-// Start the loop
-for (retryCount = 0; retryCount < maxRetries; retryCount++) {
-
+while (retryCount < maxRetries) {
     // Navigate to the page
     window.location.href = "https://yoururl.com";  // Replace with your actual URL
-
-    // Wait for the page to load
-    Wait(5);  // Wait for 5 seconds, adjust as needed
+    
+    // Wait for the page to load (add a Wait step if needed)
 
     // Check if the text is visible
-    isTextVisible = evalXPath("//span[text()='YourTextHere']").exists();  // Replace with actual XPath for the text
+    var isTextVisible = document.evaluate("//span[text()='YourTextHere']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;
 
     if (isTextVisible) {
-        lr.output_message("Text is visible. Proceeding with the script.");
-        break;  // Exit the loop if the text is visible
+        console.log("Text is visible. Proceeding with the script.");
+        break;
     } else {
-        lr.output_message("Text not visible. Attempting to navigate again.");
+        console.log("Text not visible. Attempting to navigate again.");
+        retryCount++;
     }
+
+    // Add a small delay to avoid hammering the server
+    // Add a Wait step here in the TruClient UI if needed
 }
 
-// After the loop, check if the text was found
-if (!isTextVisible) {
-    lr.error_message("Text was not found after " + maxRetries + " attempts.");
-    // Handle this scenario (e.g., fail the script or take another action)
+if (retryCount === maxRetries) {
+    console.error("Text was not found after " + maxRetries + " attempts.");
 }
-
-// Continue with the rest of your script
-
 
