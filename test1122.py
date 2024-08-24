@@ -111,31 +111,51 @@ Action()
 }
 
 
+// Step 1: Initialize Variables
 var retryCount = 0;
 var maxRetries = 5;
+var isTextVisible = false;
 
+// Step 2: Main Loop
 while (retryCount < maxRetries) {
-    // Navigate to the page
+
+    // Step 2.1: Navigate to the Page
     window.location.href = "https://yoururl.com";  // Replace with your actual URL
-    
-    // Wait for the page to load (add a Wait step if needed)
 
-    // Check if the text is visible
-    var isTextVisible = document.evaluate("//span[text()='YourTextHere']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;
+    // Step 2.2: Wait for the page to load (5-second delay)
+    setTimeout(function() {
+        // Step 2.3: Check if the text is visible using a valid XPath
+        isTextVisible = document.evaluate("//span[contains(text(),'YourTextHere')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;
 
+        if (isTextVisible) {
+            console.log("Text is visible. Proceeding with the script.");
+            // Exit loop
+            return;
+        } else {
+            console.log("Text not visible. Attempting to navigate again.");
+            retryCount++;
+        }
+
+        // If not visible and maxRetries not reached, continue
+        if (retryCount < maxRetries) {
+            waitForElement();  // Retry the process
+        }
+    }, 5000);  // 5000 ms = 5 seconds
+
+    // Break if text is found
     if (isTextVisible) {
-        console.log("Text is visible. Proceeding with the script.");
         break;
-    } else {
-        console.log("Text not visible. Attempting to navigate again.");
-        retryCount++;
     }
-
-    // Add a small delay to avoid hammering the server
-    // Add a Wait step here in the TruClient UI if needed
 }
 
-if (retryCount === maxRetries) {
-    console.error("Text was not found after " + maxRetries + " attempts.");
+// Step 3: Post-Loop Handling
+if (!isTextVisible) {
+    throw new Error("Text was not found after " + maxRetries + " attempts.");
 }
+
+// Step 4: Handle Credentials if required
+// Ensure credentials are entered if BAM dialog is present
+
+// Continue with the rest of the script
+
 
