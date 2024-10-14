@@ -11,8 +11,10 @@ if (dropdowns.length > 0) {
     });
     
     // Find and select the option that contains 'TCR'
-    var optionToSelect = Array.from(dropdown.options).find(opt => opt.textContent.includes("TCR"));
-    
+    var optionToSelect = Array.from(dropdown.options).find(function(opt) {
+        return opt.textContent.includes("TCR");
+    });
+
     if (optionToSelect) {
         optionToSelect.selected = true;  // Select the option containing 'TCR'
         dropdown.dispatchEvent(new Event('change'));  // Trigger change event
