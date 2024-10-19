@@ -1,23 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Status Checker</title>
-</head>
-<body>
-    <h1>Check Status</h1>
+from flask import Flask, render_template, request
 
-    <form action="/" method="POST">
-        <!-- Button to trigger the status check -->
-        <button type="submit">Check Status</button>
-    </form>
+app = Flask(__name__)
 
-    <!-- Display the output -->
-    {% if output %}
-        <h2>Result:</h2>
-        <div>{{ output }}</div>
-    {% endif %}
+# Dummy function to simulate status check
+def check_status():
+    # This is where you would place your actual logic
+    # For example, fetching data from a database, etc.
+    return "Status: All operations are running smoothly."
 
-</body>
-</html>
+@app.route("/", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        # When the button is clicked, this code runs
+        output = check_status()  # Call the status check function
+        return render_template("home.html", output=output)  # Pass the status to the template
+
+    return render_template("home.html")  # Render the page for GET requests without status
+
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0', port=1990)
